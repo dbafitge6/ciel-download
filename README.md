@@ -71,6 +71,7 @@ shopsupport0@gmail.com
 - 使う人のファイル・設定を消さない。**既に Ciel が入っていたら、上書きせずにそこで止めて**、どうするか使う人に聞く
 - `ciel setup` が出す「合言葉」は、最後に使う人へ見せる。それ以外の所（ファイル・ほかのサービス）へは書かない・送らない
 - 手順と違うことが起きたら、推測で進めず、出た文面をそのまま使う人に見せて止まる
+- `pipx ensurepath` のあとも、いまのシェルの PATH は古いまま。**ciel は以下ずっと道を書いて呼ぶ**（Mac は `~/.local/bin/ciel`、Windows は `$HOME\.local\bin\ciel.exe`）
 
 ### 1. 機体を見分ける
 
@@ -78,7 +79,7 @@ shopsupport0@gmail.com
 - **Windows 11**：PowerShell で進める
 - それ以外：対応していないと伝えて止める
 
-既に入っていないか確かめる：`ciel --help`（Windows は `ciel.exe --help`）が動いたら、**入っています**。止めて使う人に聞く。
+既に入っていないか確かめる：`ciel --help`（Windows は `ciel.exe --help`）と `~/.local/bin/ciel --help`（Windows は `$HOME\.local\bin\ciel.exe --help`）。**どちらかが動いたら入っています**。止めて使う人に聞く。どちらも「見つからない」なら未導入なので、先へ進む。
 
 ### 2. 下準備
 
@@ -94,8 +95,8 @@ shopsupport0@gmail.com
 **Windows 11**
 
 1. `py -0p` で入っている Python を見る。**3.12・3.13・3.14 のどれか**があれば、それを使う（いちばん新しいもの）
-2. どれも無ければ `winget install -e --id Python.Python.3.13 --accept-source-agreements --accept-package-agreements` で入れて、`py -0p` で確かめ直す
-3. 使う Python の版を **PY**（例 `3.13`）とする。`py -V:<PY> -m pip install --user pipx`
+2. どれも無ければ `winget install -e --id Python.Python.3.13 --accept-source-agreements --accept-package-agreements` で入れて、`py -0p` で確かめ直す。入れる途中で「このアプリがデバイスに変更を加えることを許可しますか？」が出たら、使う人に「はい」を押してもらう
+3. 使う Python を **PY** とする。PY は `py -0p` の行頭の `-V:` の後ろの字そのまま（例 `3.13`、`Astral/CPython3.13.16`）。`py -V:<PY> -m pip install --user pipx`
 4. `py -V:<PY> -m pipx ensurepath`
 5. この窓の PATH はまだ古いので、以下 pipx は `py -V:<PY> -m pipx`、ciel は `$HOME\.local\bin\ciel.exe` と、道を書いて呼ぶ
 
@@ -108,7 +109,9 @@ shopsupport0@gmail.com
 
    を **1つだけ**選ぶ。無ければ止めて使う人に伝える
 3. 一時フォルダに落とす（Mac は `curl -fL -o`、Windows は `Invoke-WebRequest -OutFile`）。**名前は元のまま**にする（変えると入らない）
-4. 同じ置き場の `SHA256SUMS.txt` も落として、落としたファイルの SHA-256 と一致することを確かめる（Mac は `shasum -a 256`、Windows は `Get-FileHash`）。合わなければ止める
+4. 同じ置き場の `SHA256SUMS.txt` も落として、落としたファイルの SHA-256 と一致することを確かめる。合わなければ止める
+   - Mac：落としたフォルダで `shasum -a 256 -c SHA256SUMS.txt --ignore-missing` → そのファイルの行が `OK`
+   - Windows：`(Get-FileHash <ファイル>).Hash.ToLower()` が、`SHA256SUMS.txt` のそのファイルの行の先頭の字と同じ
 
 ### 4. 入れる
 
@@ -117,15 +120,15 @@ shopsupport0@gmail.com
 
 ### 5. 設定を作る
 
-- Mac：`ciel setup --cli claude`（`ciel` が見つからなければ `~/.local/bin/ciel`）
+- Mac：`~/.local/bin/ciel setup --cli claude`
 - Windows：`$HOME\.local\bin\ciel.exe setup --cli claude`
 
-使う人が Codex を使いたいと言っていたら `--cli codex` にする。
+使う人が Codex を使いたいと言っていたら `--cli codex` にする。何も言っていなければ claude のまま（聞かなくてよい）。`--cli` を付ければ、setup は何も聞いてこない。
 出力の最後に **「ここにアクセス」の URL と「合言葉」** が出る。控えておく。
 
 ### 6. 立ち上げる（Claude Code を閉じても止まらない形で）
 
-- Mac：`ciel autostart on`（いま立ち上がり、Mac を起動するたびにも立ち上がる）
+- Mac：`~/.local/bin/ciel autostart on`（いま立ち上がり、Mac を起動するたびにも立ち上がる）
 - Windows：別の窓で立てる。この窓が閉じても止まらない：
   `Start-Process powershell -ArgumentList '-NoExit','-Command',"& '$HOME\.local\bin\ciel.exe' serve"`
   使う人に「開いた青い窓は閉じないでください（閉じると Ciel が止まります）」と伝える
@@ -133,7 +136,7 @@ shopsupport0@gmail.com
 ### 7. 確かめる
 
 10秒ほど待って、`<URL>/enroll` を開くと 200 が返ることを確かめる（Mac は `curl -s -o /dev/null -w "%{http_code}"`、Windows は `(Invoke-WebRequest <URL>/enroll -UseBasicParsing).StatusCode`）。
-返らなければ `ciel doctor` の出力を使う人に見せて止まる。
+返らなければ、さらに20秒待ってもう1度。それでも返らなければ `ciel doctor`（道を書いて）の出力を使う人に見せて止まる。
 
 ### 8. 使う人に伝える
 
