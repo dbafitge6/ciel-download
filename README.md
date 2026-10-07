@@ -60,6 +60,34 @@ Mac の `cp314` だけは macOS 15 以上が要ります。
 
 Codex で使う人は、`ciel setup` を `ciel setup --cli codex` にしてください。
 
+## スマホから開く（使いたい人だけ・1.3.0 から）
+
+Ciel は、最初は**入れたパソコンの中からしか開けません**。
+スマホからも使いたいときだけ、次の手順で開いてください。
+
+使うのは **Tailscale**（無料の VPN）です。**自分の端末どうしだけ**をつなぐので、インターネットには出ません。
+パソコンが寝ている・電源が切れているときは届きません。
+
+> **気をつけること**
+> 合言葉を渡したスマホは、**そのパソコンでコマンドを打てます**。
+> **`tailscale funnel` は使わないでください。** インターネットに丸見えになります。
+
+1. **パソコンに Tailscale を入れてログイン**する
+   （Mac は App Store で「Tailscale」、Windows は https://tailscale.com/download/windows ）
+2. パソコンのターミナルで `ciel remote on` を打つ。最後に `tailscale serve --bg <数字>` の1行が出るので、**その1行をそのまま打つ**
+   （はじめては、ブラウザで HTTPS を使ってよいか聞かれることがあります。許可してください）
+3. **Ciel を立て直す**（動いている Ciel を止めて、もう一度 `ciel serve`。Mac で自動起動にしている人は `ciel autostart off` → `ciel autostart on`）
+4. **スマホに Tailscale を入れて、パソコンと同じアカウントでログイン**する（iPhone は App Store、Android は Google Play）
+5. パソコンで `tailscale serve status` を打つ。出た `https://….ts.net` の住所を、スマホのブラウザで開く
+6. パソコンで `ciel issue スマホ` を打ち、出た合言葉をスマホの画面に貼る
+
+**スマホを無くしたら**：パソコンで `ciel revoke スマホ`（その合言葉はすぐ使えなくなります）。
+そのあと https://login.tailscale.com/admin/machines で、無くしたスマホを「Remove」。
+
+**やめるとき**：`ciel remote off` と `tailscale serve --https=443 off` を打って、Ciel を立て直す。
+
+いまの様子は `ciel remote` で見られます。うまくいかないときは `ciel doctor` の結果を貼って、下の問い合わせへ。
+
 ## 問い合わせ
 
 shopsupport0@gmail.com
