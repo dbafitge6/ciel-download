@@ -105,6 +105,10 @@ shopsupport0@gmail.com
 1. `py -0p` で入っている Python を見る。**3.12・3.13・3.14 のどれか**があれば、それを使う（いちばん新しいもの）
    - ただし **`-V:` の後ろに `/` が入っている行（例 `Astral/CPython3.14.8`・`ContinuumAnalytics/…`）は使わない。** uv や Anaconda が入れた Python で、pip で物を足せない（`externally-managed-environment` で止まる）。使えるのは `-V:3.13` のような、数字だけの行
 2. どれも無ければ `winget install -e --id Python.Python.3.13 --accept-source-agreements --accept-package-agreements` で入れて、`py -0p` で確かめ直す。入れる途中で「このアプリがデバイスに変更を加えることを許可しますか？」が出たら、使う人に「はい」を押してもらう
+   - **winget が無い**（「用語 'winget' は…認識されません」）ときは、python.org から入れる（管理者の許可は要らない）：
+     `Invoke-WebRequest https://www.python.org/ftp/python/3.13.16/python-3.13.16-amd64.exe -OutFile $env:TEMP\py313.exe`
+     → `Start-Process $env:TEMP\py313.exe -ArgumentList '/quiet','InstallAllUsers=0','Include_launcher=1','PrependPath=0' -Wait`
+     → `py -0p` で確かめ直す
 3. 使う Python を **PY** とする。PY は `py -0p` の行頭の `-V:` の後ろの字そのまま（例 `3.13`）。`py -V:<PY> -m pip install --user pipx`
 4. `py -V:<PY> -m pipx ensurepath`
 5. この窓の PATH はまだ古いので、以下 pipx は `py -V:<PY> -m pipx`、ciel は `$HOME\.local\bin\ciel.exe` と、道を書いて呼ぶ
