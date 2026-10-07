@@ -103,8 +103,9 @@ shopsupport0@gmail.com
 **Windows 11**
 
 1. `py -0p` で入っている Python を見る。**3.12・3.13・3.14 のどれか**があれば、それを使う（いちばん新しいもの）
+   - ただし **`-V:` の後ろに `/` が入っている行（例 `Astral/CPython3.14.8`・`ContinuumAnalytics/…`）は使わない。** uv や Anaconda が入れた Python で、pip で物を足せない（`externally-managed-environment` で止まる）。使えるのは `-V:3.13` のような、数字だけの行
 2. どれも無ければ `winget install -e --id Python.Python.3.13 --accept-source-agreements --accept-package-agreements` で入れて、`py -0p` で確かめ直す。入れる途中で「このアプリがデバイスに変更を加えることを許可しますか？」が出たら、使う人に「はい」を押してもらう
-3. 使う Python を **PY** とする。PY は `py -0p` の行頭の `-V:` の後ろの字そのまま（例 `3.13`、`Astral/CPython3.13.16`）。`py -V:<PY> -m pip install --user pipx`
+3. 使う Python を **PY** とする。PY は `py -0p` の行頭の `-V:` の後ろの字そのまま（例 `3.13`）。`py -V:<PY> -m pip install --user pipx`
 4. `py -V:<PY> -m pipx ensurepath`
 5. この窓の PATH はまだ古いので、以下 pipx は `py -V:<PY> -m pipx`、ciel は `$HOME\.local\bin\ciel.exe` と、道を書いて呼ぶ
 
