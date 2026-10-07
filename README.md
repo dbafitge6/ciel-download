@@ -145,6 +145,10 @@ shopsupport0@gmail.com
 - Windows：別の窓で立てる。この窓が閉じても止まらない：
   `Start-Process powershell -ArgumentList '-NoExit','-Command',"& '$HOME\.local\bin\ciel.exe' serve"`
   使う人に「開いた青い窓は閉じないでください（閉じると Ciel が止まります）」と伝える
+  - **断られたら**（Codex は `rejected: blocked by policy` で断ることがある）、代わりにデスクトップに立ち上げ用のファイルを作る。
+    場所は `[Environment]::GetFolderPath('Desktop')`（OneDrive の下のことがあるので決め打ちしない）、名前は `Ciel.cmd`、中身は英字だけで次の2行：
+    `@echo off` と `"<$HOME の実際の道>\.local\bin\ciel.exe" serve`（`$HOME` は展開した道を書く）。
+    書いたら使う人に「デスクトップの **Ciel** をダブルクリックしてください。黒い窓が開きます。閉じると Ciel が止まります。次からもこれで立ち上がります」と伝え、押したと言われてから 7 へ
 
 ### 7. 確かめる
 
