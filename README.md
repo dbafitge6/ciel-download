@@ -4,18 +4,24 @@
 
 **2026年12月31日まで無料**で使えます。1月1日からは止まります（続けるときは製品版）。
 
-## いちばん楽な入れ方：Claude Code に頼む
+## いちばん楽な入れ方：Claude Code か Codex に頼む
 
-Claude Code が入っていて、ログインできていれば、次の1文を Claude Code に貼るだけです。
+Claude Code か Codex（ChatGPT の）が入っていて、ログインできていれば、次の1文を貼るだけです。
 
 ```
-https://github.com/dbafitge6/ciel-download の README の「Claude Code への手順」どおりに、Ciel を入れて起動まで進めてください
+https://github.com/dbafitge6/ciel-download の README の「AI への手順」どおりに、Ciel を入れて起動まで進めてください
 ```
 
-途中でパスワードを聞かれる所だけは、自分で打ってもらいます（Claude Code が案内します）。
+途中でパスワードを聞かれる所だけは、自分で打ってもらいます（AI が案内します）。
 最後に、開く URL と「合言葉」が出ます。
 
-Claude Code がまだ無い人は、先に入れてください：https://code.claude.com/docs/en/setup
+**ChatGPT を使っている人へ**：やり方は同じです。ただし貼る先は、いつもの ChatGPT の画面（アプリやブラウザ）ではなく、
+**Codex**（パソコンの中で動く方）です。ChatGPT の画面に貼っても、パソコンには入れられません。
+
+まだ入っていない人は、どちらかを先に入れてください：
+
+- Claude Code：https://code.claude.com/docs/en/setup
+- Codex：https://developers.openai.com/codex/cli
 
 ## 自分で入れる
 
@@ -51,23 +57,25 @@ Mac の `cp314` だけは macOS 15 以上が要ります。
     ciel setup
     ciel serve
 
+Codex で使う人は、`ciel setup` を `ciel setup --cli codex` にしてください。
+
 ## 問い合わせ
 
 shopsupport0@gmail.com
 
 ---
 
-## Claude Code への手順
+## AI への手順（Claude Code・Codex）
 
-> ここから下は、Claude Code が読んで進めるための手順です。
+> ここから下は、Claude Code や Codex が読んで進めるための手順です。
 > 人が読む必要はありません。
 
-あなた（Claude Code）は、この機体に Ciel を入れて、ブラウザで開ける所まで進めます。
+あなた（Claude Code または Codex）は、この機体に Ciel を入れて、ブラウザで開ける所まで進めます。
 **1手ずつ、結果を確かめてから次へ進んでください。**
 
 ### 守ること
 
-- **パスワード（sudo）が要る命令は、自分で打たない。** 使う人に、Claude Code の入力欄で `!` を頭に付けて打ってもらう（例：`! <命令>`）。打ち終わったと言われてから先へ進む
+- **パスワード（sudo）が要る命令は、自分で打たない。** 使う人に打ってもらう——Claude Code なら入力欄で `!` を頭に付けて（例：`! <命令>`）、Codex なら別のターミナルの窓で。打ち終わったと言われてから先へ進む
 - 使う人のファイル・設定を消さない。**既に Ciel が入っていたら、上書きせずにそこで止めて**、どうするか使う人に聞く
 - `ciel setup` が出す「合言葉」は、最後に使う人へ見せる。それ以外の所（ファイル・ほかのサービス）へは書かない・送らない
 - 手順と違うことが起きたら、推測で進めず、出た文面をそのまま使う人に見せて止まる
@@ -123,10 +131,10 @@ shopsupport0@gmail.com
 - Mac：`~/.local/bin/ciel setup --cli claude`
 - Windows：`$HOME\.local\bin\ciel.exe setup --cli claude`
 
-使う人が Codex を使いたいと言っていたら `--cli codex` にする。何も言っていなければ claude のまま（聞かなくてよい）。`--cli` を付ければ、setup は何も聞いてこない。
+**あなたが Codex なら `--cli codex`**、Claude Code なら `--cli claude`。使う人が別のほうを使いたいと言っていたら、そちらにする（聞かなくてよい）。`--cli` を付ければ、setup は何も聞いてこない。
 出力の最後に **「ここにアクセス」の URL と「合言葉」** が出る。控えておく。
 
-### 6. 立ち上げる（Claude Code を閉じても止まらない形で）
+### 6. 立ち上げる（Claude Code・Codex を閉じても止まらない形で）
 
 - Mac：`~/.local/bin/ciel autostart on`（いま立ち上がり、Mac を起動するたびにも立ち上がる）
 - Windows：別の窓で立てる。この窓が閉じても止まらない：
