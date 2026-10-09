@@ -70,11 +70,11 @@ Codex で使う人は、`ciel setup` を `ciel setup --cli codex` にしてく�
 
    Mac
 
-       pipx install --force ~/Downloads/ciel-1.3.2-*.whl
+       pipx install --force ~/Downloads/ciel-1.4.0-*.whl
 
    Windows 11
 
-       pipx install --force (Get-Item $HOME\Downloads\ciel-1.3.2-*.whl).FullName
+       pipx install --force (Get-Item $HOME\Downloads\ciel-1.4.0-*.whl).FullName
 
 4. 立ち上げる（`ciel serve`。Mac で自動起動にしていた人は `ciel autostart on`）
 
