@@ -5,7 +5,7 @@
 **当面無料**で使えます。感想を聞かせてもらえたらうれしいです（shopsupport0@gmail.com）。
 
 **1.5.0 から、アプリになりました。** 開くと Ciel 専用の窓で出ます（1.5.1 から・Chrome か Edge があるとき）。 落としてダブルクリックで入ります。Python や Homebrew は要りません。
-次の版からは、Ciel の画面に「新しい版」と出て、押すだけで更新できます。
+新しい版が出ると、Ciel の画面に「新しい版」と出て、押すだけで更新できます（Windows の 1.5.0・1.5.1 だけは、下の「Windows で 1.5.0・1.5.1 を入れた方へ」の手順で一度だけ入れ直してください）。
 
 ## 要るもの
 
@@ -21,7 +21,7 @@
 
 | パソコン | 落とすファイル |
 |---|---|
-| Mac | `Ciel-<版>.dmg`（例 `Ciel-1.5.1.dmg`） |
+| Mac | `Ciel-<版>.dmg`（例 `Ciel-1.5.3.dmg`） |
 | Windows 11 | `Ciel-<版>-setup.exe` |
 
 ### Mac
@@ -49,6 +49,16 @@
 Claude Code と Codex の両方が入っていると、Claude Code の方で立ち上がります。
 Codex にしたいときは、設定ファイル（Mac は `~/.config/ciel/ciel.toml`、Windows は `%USERPROFILE%\.config\ciel\ciel.toml`）の
 `[[windows]]` の中の `command = "claude …"` の行を `command = "codex"` にして、Ciel を立ち上げ直してください。
+
+## Windows で 1.5.0・1.5.1 を入れた方へ
+
+1.5.0・1.5.1 の Windows 版には、**Claude Code の窓が開かない**穴と、**画面の「新しい版」から更新できない**穴がありました。
+お手数ですが**一度だけ**、手で入れ直してください。**設定と合言葉は残ります。**
+
+1. スタートメニューの **Ciel を終了** で止める
+2. 上の「入れる」の手順で、新しい setup.exe を入れる（前の版の上にそのまま入ります）
+
+Mac の方は、Ciel の画面の上に出る「新しい版」から更新できます。
 
 ## 前の版（1.4.0 まで）を入れた方へ
 
@@ -112,6 +122,9 @@ shopsupport0@gmail.com
 
 `pipx list` に `ciel` が出たら、前の版（1.4.0 まで）が入っている。使う人に「前の版を外してアプリに入れ替えます。設定と合言葉は残ります」と伝え、
 動いている Ciel を止めてもらってから（Mac で自動起動なら `ciel autostart off` も）、`pipx uninstall ciel` を打つ。
+
+Windows で `$env:LOCALAPPDATA\Programs\Ciel\Ciel.exe` が在れば、アプリの形の前の版が入っている。使う人に「新しい版を上に入れ直します。設定と合言葉は残ります」と伝え、
+スタートメニューの「Ciel を終了」で止めてもらってから、3. へ進む（setup.exe は前の版の上にそのまま入る）。
 
 ### 3. 落として入れる
 
