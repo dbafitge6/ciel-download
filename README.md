@@ -21,7 +21,7 @@
 
 | パソコン | 落とすファイル |
 |---|---|
-| Mac | `Ciel-<版>.dmg`（例 `Ciel-1.5.5.dmg`） |
+| Mac | `Ciel-<版>.dmg`（例 `Ciel-1.5.6.dmg`） |
 | Windows 11 | `Ciel-<版>-setup.exe` |
 
 ### Mac
