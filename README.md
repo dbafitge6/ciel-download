@@ -2,6 +2,8 @@
 
 パソコンの中で動いている Claude Code や Codex を、1つの画面から使う道具です。
 
+**ダウンロードページ：https://ciel-cfu.pages.dev** （ここから落とすのがいちばん簡単です）
+
 **当面無料**で使えます。感想を聞かせてもらえたらうれしいです（shopsupport0@gmail.com）。
 
 **2.0 から、専用のアプリの窓で開きます。** 落としてダブルクリックで入ります。Python や Homebrew、Chrome や Edge は要りません。
