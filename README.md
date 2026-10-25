@@ -4,6 +4,8 @@
 
 **ダウンロードページ：https://ciel-cfu.pages.dev** （ここから落とすのがいちばん簡単です）
 
+**使い方の説明書：[GUIDE.md](GUIDE.md)** （Ciel の画面の上の「説明書」からも開けます）
+
 **当面無料**で使えます。感想を聞かせてもらえたらうれしいです（shopsupport0@gmail.com）。
 
 **2.0 から、専用のアプリの窓で開きます。** 落としてダブルクリックで入ります。Python や Homebrew、Chrome や Edge は要りません。
